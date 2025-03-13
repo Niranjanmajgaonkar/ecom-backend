@@ -270,6 +270,23 @@ class UserController extends Controller
     }
 
 
+    public function addnewproducts(Request $request)
+    {
+log::info($request->all());
+        // ✅ **Eloquent ORM for inserting data**
+        $product = new Productsdetail();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price =$request->price;
+        $product->imageurl = 'images/products/' . $request->imageName;// Store Image Path
+        $product->p_category =$request->p_category;
+        $product->productid =$request->productid;
+        $product->Quantity = $request->quantity;
+        $product->save();
+    
+        return response()->json(['message' => 'Product added successfully!']);
+    }
+
     public function ordersdata(){
         $obj = new Order();
         $data = $obj->get();
