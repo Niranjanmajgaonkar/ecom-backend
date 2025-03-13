@@ -25,7 +25,9 @@ class HandleInertiaRequests extends Middleware
     {
         return parent::version($request);
     }
-
+    protected $except = [
+        '/order_place', // Exclude this route from CSRF protection
+    ];
     /**
      * Define the props that are shared by default.
      *
